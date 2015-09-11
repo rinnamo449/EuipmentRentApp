@@ -35,8 +35,8 @@
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.btn_Login = new System.Windows.Forms.Button();
             this.gb_Login = new System.Windows.Forms.GroupBox();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.btn_Clear = new System.Windows.Forms.Button();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.gb_Login.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,11 +99,6 @@
             this.gb_Login.TabStop = false;
             this.gb_Login.Text = "Log in";
             // 
-            // serialPort1
-            // 
-            this.serialPort1.PortName = "COM3";
-            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-            // 
             // btn_Clear
             // 
             this.btn_Clear.Location = new System.Drawing.Point(251, 138);
@@ -113,6 +108,11 @@
             this.btn_Clear.Text = "Clear ";
             this.btn_Clear.UseVisualStyleBackColor = true;
             this.btn_Clear.Click += new System.EventHandler(this.btn_ClearRfid_Click);
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.PortName = "COM3";
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
             // MemberLoginForm
             // 

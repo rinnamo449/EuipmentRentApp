@@ -19,7 +19,7 @@ namespace EuipmentRentApp
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\sr comtech\Documents\visual studio 2015\Projects\EuipmentRentApp\EuipmentRentApp\App_Data\Database\EquipmentDatabase.accdb;
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\sr comtech\Documents\visual studio 2015\Projects\EuipmentRentApp\EuipmentRentApp\App_Data\Database\OfficeStoreSystem.accdb;
 Persist Security Info=False;";
         }
 
@@ -58,7 +58,7 @@ Persist Security Info=False;";
         {
             txt_RfidNumber.Text = "";
             txt_Password.Text = "";
-            serialPort1.PortName = "COM3";
+            //serialPort1.PortName = "COM3";
             serialPort1.Open();
         }
     }
