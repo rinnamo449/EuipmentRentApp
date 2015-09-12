@@ -1,6 +1,6 @@
 ﻿namespace EuipmentRentApp
 {
-    partial class MemberLoginForm
+    partial class MemberLoginWithRfid
     {
         /// <summary>
         /// Required designer variable.

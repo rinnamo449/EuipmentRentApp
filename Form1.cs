@@ -19,7 +19,7 @@ namespace EuipmentRentApp
 
         private void btn_Member_Click(object sender, EventArgs e)
         {
-            MemberLoginForm mlf = new MemberLoginForm();
+            MemberLoginWithRfid mlf = new MemberLoginWithRfid();
             this.Hide();
             mlf.ShowDialog();
         }

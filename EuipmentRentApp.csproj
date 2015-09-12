@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,17 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoOrder.Designer.cs">
+      <DependentUpon>DoOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MemberLoginForm.cs">
+    <Compile Include="MemberLoginWithRfid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MemberLoginForm.Designer.cs">
-      <DependentUpon>MemberLoginForm.cs</DependentUpon>
+    <Compile Include="MemberLoginWithRfid.Designer.cs">
+      <DependentUpon>MemberLoginWithRfid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberLoginWithUsername.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberLoginWithUsername.Designer.cs">
+      <DependentUpon>MemberLoginWithUsername.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,11 +78,17 @@
     <Compile Include="SignUpForm.Designer.cs">
       <DependentUpon>SignUpForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DoOrder.resx">
+      <DependentUpon>DoOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberLoginForm.resx">
-      <DependentUpon>MemberLoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="MemberLoginWithRfid.resx">
+      <DependentUpon>MemberLoginWithRfid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberLoginWithUsername.resx">
+      <DependentUpon>MemberLoginWithUsername.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -11,11 +11,11 @@ using System.Data.OleDb;
 
 namespace EuipmentRentApp
 {
-    public partial class MemberLoginForm : Form
+    public partial class MemberLoginWithRfid : Form
     {
         private OleDbConnection connection = new OleDbConnection();
 
-        public MemberLoginForm()
+        public MemberLoginWithRfid()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
@@ -31,10 +31,9 @@ Persist Security Info=False;";
         }
 
         private void btn_Login_Click(object sender, EventArgs e)
-        {
-           
+        {       
                 connection.Open();
-                OleDbDataAdapter da = new OleDbDataAdapter("select * from MemberData where username = '"+txt_RfidNumber.Text+"' and password='"+txt_Password.Text+"'",connection);
+                OleDbDataAdapter da = new OleDbDataAdapter("select * from MemberData where username = '"+txt_RfidNumber.Text+"' and pass='"+txt_Password.Text+"'",connection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 if(dt.Rows.Count == 1)
@@ -46,7 +45,7 @@ Persist Security Info=False;";
                     MessageBox.Show("Login Fail");
                 }
                 connection.Close();
-            }
+         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
