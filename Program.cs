@@ -19,7 +19,8 @@ namespace EuipmentRentApp
             //Application.Run(new StartWindow());
             //Application.Run(new SignUpForm());
             //Application.Run(new MemberLoginWithUsername());
-            Application.Run(new DoOrder());
+            //Application.Run(new DoOrder());
+            Application.Run(new ReceiveOrder());
 
         }
     }

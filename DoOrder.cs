@@ -13,14 +13,17 @@ namespace EuipmentRentApp
     public partial class DoOrder : Form
     {
         private OleDbConnection connection = new OleDbConnection();
+        private int  amount;
         public DoOrder()
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\sr comtech\Documents\Visual Studio 2015\Projects\EuipmentRentApp\EuipmentRentApp\App_Data\Database\OfficeStoreSystem.accdb;
 Persist Security Info=False;";
+            
         }
         private void DoOrder_Load(object sender, EventArgs e)
         {
+            checkedListBox1.Items.Remove("");
             try
             {
                 //combine data from databse to combobox or dropdownlist
@@ -46,18 +49,21 @@ Persist Security Info=False;";
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
-                textBox1.Text = row.Cells["itemname"].Value.ToString();
-                textBox2.Text = row.Cells["amount"].Value.ToString();
+                txt_YourItem.Text = row.Cells["itemname"].Value.ToString();
+                amount = Int32.Parse(row.Cells["amount"].Value.ToString());
+                //Amount.Text = row.Cells["amount"].Value.ToString();
 
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Int32.Parse(textBox3.Text) > Int32.Parse(textBox2.Text))
-                MessageBox.Show("your input must less than " + textBox2.Text);
+            if (Int32.Parse(txt_WantedAmount.Text) > amount)
+                MessageBox.Show("your input must less than " + amount);
             else
-                richTextBox2.AppendText(textBox1.Text + " " + textBox3.Text + "\n");
+                checkedListBox1.Items.Add(txt_YourItem.Text + " " + txt_WantedAmount.Text);
+                //orderlist = textBox1.Text + " " + textBox3.Text + "\n";
+                //richTextBox2.AppendText(textBox1.Text + " " + textBox3.Text + "\n");
             try
             {
                 //combine data from databse to combobox or dropdownlist
@@ -86,7 +92,7 @@ Persist Security Info=False;";
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "select * from OrderData where ID=" + 12 + "";
+                command.CommandText = "select * from OrderData where ID=" + 17 + "";
                 OleDbDataAdapter da = new OleDbDataAdapter(command);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -122,14 +128,19 @@ Persist Security Info=False;";
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int ID;
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (var item in checkedListBox1.Items)
+            {
+                sb.Append(item.ToString()).Append("\n");
+            }
+            MessageBox.Show(sb.ToString());
             try
             {
                 //combine data from databse to combobox or dropdownlist
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "insert into OrderData(orderlist) values('" + richTextBox2.Text + "')";
+                command.CommandText = "insert into OrderData(orderlist) values('" + sb + "')";
                 command.ExecuteNonQuery();
                 connection.Close();
 
@@ -139,7 +150,21 @@ Persist Security Info=False;";
                 MessageBox.Show(ex.Message);
             }
             //MessageBox.Show(richTextBox2.Text);
-          
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //delete item from list
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (var item in checkedListBox1.CheckedItems.OfType<string>().ToList())
+            {
+                checkedListBox1.Items.Remove(item);
+            }
         }
     }
 }
