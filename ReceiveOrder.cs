@@ -49,6 +49,7 @@ Persist Security Info=False;";
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //caculate new amount of each updated item
             int oldamount = 0;
             int newamount = 0;
            foreach (string line in richTextBox1.Lines)
@@ -71,15 +72,14 @@ Persist Security Info=False;";
                         }
 
                         newamount = oldamount - Int32.Parse(substring[1]);
-                        connection.Close();
-                        MessageBox.Show(newamount + "");
+                        connection.Close();               
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
 
-
+                    //update with new  amount
                     try
                     {
                         connection.Open();
@@ -87,6 +87,7 @@ Persist Security Info=False;";
                         command.Connection = connection;
                         command.CommandText = "update ItemData set amount = " + newamount + " where itemname = '" + substring[0] + "'";
                         command.ExecuteNonQuery();
+                        MessageBox.Show("Update Successful");
                         connection.Close();
                     }
                     catch (Exception ex)

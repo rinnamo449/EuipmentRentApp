@@ -30,16 +30,13 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txt_YourItem = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_AddOrder = new System.Windows.Forms.Button();
+            this.btn_SubmitToDataBase = new System.Windows.Forms.Button();
             this.lbl_YourItem = new System.Windows.Forms.Label();
             this.txt_WantedAmount = new System.Windows.Forms.TextBox();
             this.lbl_WantedAmount = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_deleteCheckedItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +49,7 @@
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(227, 128);
+            this.dataGridView1.Size = new System.Drawing.Size(227, 373);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -64,52 +61,26 @@
             this.txt_YourItem.Size = new System.Drawing.Size(100, 22);
             this.txt_YourItem.TabIndex = 1;
             // 
-            // button1
+            // btn_AddOrder
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(485, 109);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 24);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Add Order";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_AddOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btn_AddOrder.Location = new System.Drawing.Point(280, 153);
+            this.btn_AddOrder.Name = "btn_AddOrder";
+            this.btn_AddOrder.Size = new System.Drawing.Size(100, 24);
+            this.btn_AddOrder.TabIndex = 3;
+            this.btn_AddOrder.Text = "Add Order";
+            this.btn_AddOrder.UseVisualStyleBackColor = true;
+            this.btn_AddOrder.Click += new System.EventHandler(this.btn_AddOrder_Click);
             // 
-            // button2
+            // btn_SubmitToDataBase
             // 
-            this.button2.Location = new System.Drawing.Point(485, 197);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(485, 247);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(175, 153);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(256, 210);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(137, 203);
-            this.richTextBox2.TabIndex = 6;
-            this.richTextBox2.Text = "";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(256, 437);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(137, 41);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "submit order to database";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btn_SubmitToDataBase.Location = new System.Drawing.Point(399, 437);
+            this.btn_SubmitToDataBase.Name = "btn_SubmitToDataBase";
+            this.btn_SubmitToDataBase.Size = new System.Drawing.Size(137, 41);
+            this.btn_SubmitToDataBase.TabIndex = 7;
+            this.btn_SubmitToDataBase.Text = "submit order to database";
+            this.btn_SubmitToDataBase.UseVisualStyleBackColor = true;
+            this.btn_SubmitToDataBase.Click += new System.EventHandler(this.btn_SubmitToDataBase_Click);
             // 
             // lbl_YourItem
             // 
@@ -123,7 +94,7 @@
             // 
             // txt_WantedAmount
             // 
-            this.txt_WantedAmount.Location = new System.Drawing.Point(604, 60);
+            this.txt_WantedAmount.Location = new System.Drawing.Point(399, 108);
             this.txt_WantedAmount.Name = "txt_WantedAmount";
             this.txt_WantedAmount.Size = new System.Drawing.Size(100, 20);
             this.txt_WantedAmount.TabIndex = 10;
@@ -132,7 +103,7 @@
             // 
             this.lbl_WantedAmount.AutoSize = true;
             this.lbl_WantedAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lbl_WantedAmount.Location = new System.Drawing.Point(482, 60);
+            this.lbl_WantedAmount.Location = new System.Drawing.Point(277, 109);
             this.lbl_WantedAmount.Name = "lbl_WantedAmount";
             this.lbl_WantedAmount.Size = new System.Drawing.Size(116, 16);
             this.lbl_WantedAmount.TabIndex = 11;
@@ -144,37 +115,34 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
             ""});
-            this.checkedListBox1.Location = new System.Drawing.Point(31, 199);
+            this.checkedListBox1.Location = new System.Drawing.Point(281, 199);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(183, 212);
             this.checkedListBox1.TabIndex = 12;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
-            // button4
+            // btn_deleteCheckedItem
             // 
-            this.button4.Location = new System.Drawing.Point(31, 437);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(183, 41);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "delete check item";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btn_deleteCheckedItem.Location = new System.Drawing.Point(252, 437);
+            this.btn_deleteCheckedItem.Name = "btn_deleteCheckedItem";
+            this.btn_deleteCheckedItem.Size = new System.Drawing.Size(128, 41);
+            this.btn_deleteCheckedItem.TabIndex = 13;
+            this.btn_deleteCheckedItem.Text = "Delete Checked Item";
+            this.btn_deleteCheckedItem.UseVisualStyleBackColor = true;
+            this.btn_deleteCheckedItem.Click += new System.EventHandler(this.btn_deleteCheckedItem_Click);
             // 
             // DoOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 490);
-            this.Controls.Add(this.button4);
+            this.ClientSize = new System.Drawing.Size(608, 499);
+            this.Controls.Add(this.btn_deleteCheckedItem);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.lbl_WantedAmount);
             this.Controls.Add(this.txt_WantedAmount);
             this.Controls.Add(this.lbl_YourItem);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_SubmitToDataBase);
+            this.Controls.Add(this.btn_AddOrder);
             this.Controls.Add(this.txt_YourItem);
             this.Controls.Add(this.dataGridView1);
             this.Name = "DoOrder";
@@ -189,15 +157,12 @@
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txt_YourItem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_AddOrder;
+        private System.Windows.Forms.Button btn_SubmitToDataBase;
         private System.Windows.Forms.Label lbl_YourItem;
         private System.Windows.Forms.TextBox txt_WantedAmount;
         private System.Windows.Forms.Label lbl_WantedAmount;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_deleteCheckedItem;
     }
 }
