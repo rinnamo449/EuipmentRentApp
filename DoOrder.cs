@@ -25,16 +25,17 @@ Persist Security Info=False;";
         private void DoOrder_Load(object sender, EventArgs e)
         {
             checkedListBox1.Items.Remove("");
+            //load data to datagridview
             try
-            {
-                //combine data from databse to combobox or dropdownlist
+            {                     
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
                 command.CommandText = "select itemname,amount from  ItemData";
                 OleDbDataAdapter da = new OleDbDataAdapter(command);
                 DataTable dt = new DataTable();
-                da.Fill(dt);
+                //dt.Columns.Add(new DataColumn("Selected", typeof(bool)));
+                da.Fill(dt);           
                 dataGridView1.DataSource = dt;
                 connection.Close();
 
@@ -43,7 +44,29 @@ Persist Security Info=False;";
             {
                 MessageBox.Show(ex.Message);
             }
+            //add checkcolumn to DGV2
+            DataGridViewCheckBoxColumn chkcol = new DataGridViewCheckBoxColumn();
+            chkcol.Width = 80;
+            chkcol.HeaderText = "check to delete";
+            chkcol.Name = "chkcol";
+            dgv_OrderList.Columns.Add(chkcol);
+          
+            var Itemcol = new DataGridViewTextBoxColumn();
+            Itemcol.HeaderText = "Item";
+            Itemcol.Name = "Itemcol";
+            dgv_OrderList.Columns.Add(Itemcol);
 
+            var Amountcol = new DataGridViewTextBoxColumn();
+            Amountcol.HeaderText = "Amount";
+            Amountcol.Name = "Amountcol";
+            dgv_OrderList.Columns.Add(Amountcol);
+            // set aliment and style of dgv's header
+            foreach (DataGridViewColumn col in dgv_OrderList.Columns)
+            {
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.HeaderCell.Style.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
+                col.Width = 50;
+            }
         }
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -58,6 +81,7 @@ Persist Security Info=False;";
 
         private void btn_AddOrder_Click(object sender, EventArgs e)
         {
+           //add user order to checklistbox
             if (txt_WantedAmount.Text == "")
             {
                 MessageBox.Show("Wanted amount cant be empty");
@@ -66,7 +90,9 @@ Persist Security Info=False;";
                 if (Int32.Parse(txt_WantedAmount.Text) > amount)
                 MessageBox.Show("your input must less than " + amount);
                      else
-                        checkedListBox1.Items.Add(txt_YourItem.Text + " " + txt_WantedAmount.Text);
+                //add order to dgv
+                dgv_OrderList.Rows.Add(false, txt_YourItem.Text, txt_WantedAmount.Text);
+            //checkedListBox1.Items.Add(txt_YourItem.Text + " " + txt_WantedAmount.Text);    
             txt_WantedAmount.Text = "";
         }
 
@@ -77,7 +103,10 @@ Persist Security Info=False;";
             {
                 sb.Append(item.ToString()).Append("\n");
             }
-            
+            foreach (DataGridViewRow row in dgv_OrderList.Rows)
+            {
+                sb.Append(row.Cells[1].Value.ToString()).Append(" ").Append(row.Cells[2].Value.ToString()).Append("\n");
+            }
             try
             {       
                 //Add new ORder To database 
@@ -93,9 +122,10 @@ Persist Security Info=False;";
             {
                 MessageBox.Show(ex.Message);
             }
+
             try
             {
-                //Get OrderID
+                //generate OrderID
                 connection.Open();
                 
                 OleDbDataAdapter da = new OleDbDataAdapter("select * from OrderData",connection);
@@ -120,19 +150,20 @@ Persist Security Info=False;";
             }
         }
 
-        //delete item from list
+        //delete item from dgv_Orderlist
         private void btn_deleteCheckedItem_Click(object sender, EventArgs e)
         {
-            foreach (var item in checkedListBox1.CheckedItems.OfType<string>().ToList())
+            for (int i = dgv_OrderList.Rows.Count - 1; i >= 0; i--)
             {
-                checkedListBox1.Items.Remove(item);
-            }
+                if ((bool)dgv_OrderList.Rows[i].Cells[0].FormattedValue)
+                {
+                    dgv_OrderList.Rows.RemoveAt(i);
+                }
+            }   
+             
         }
 
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 

@@ -21,6 +21,7 @@ namespace EuipmentRentApp
             //Application.Run(new MemberLoginWithUsername());
             //Application.Run(new DoOrder());
             Application.Run(new ReceiveOrder());
+           // Application.Run(new AddNewItem());
 
         }
     }

@@ -37,9 +37,10 @@ Persist Security Info=False;";
                 foreach (DataRow row in dt.Rows)
                 {
                     richTextBox1.Text = row["orderlist"].ToString();
-                    connection.Close();
+                    
 
                 }
+                connection.Close();
             }
             catch (Exception ex)
             {
