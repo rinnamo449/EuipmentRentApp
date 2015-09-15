@@ -35,7 +35,6 @@
             this.lbl_YourItem = new System.Windows.Forms.Label();
             this.txt_WantedAmount = new System.Windows.Forms.TextBox();
             this.lbl_WantedAmount = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.btn_deleteCheckedItem = new System.Windows.Forms.Button();
             this.dgv_OrderList = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -60,6 +59,7 @@
             this.txt_YourItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txt_YourItem.Location = new System.Drawing.Point(364, 57);
             this.txt_YourItem.Name = "txt_YourItem";
+            this.txt_YourItem.ReadOnly = true;
             this.txt_YourItem.Size = new System.Drawing.Size(100, 22);
             this.txt_YourItem.TabIndex = 1;
             // 
@@ -76,7 +76,7 @@
             // 
             // btn_SubmitToDataBase
             // 
-            this.btn_SubmitToDataBase.Location = new System.Drawing.Point(443, 390);
+            this.btn_SubmitToDataBase.Location = new System.Drawing.Point(233, 421);
             this.btn_SubmitToDataBase.Name = "btn_SubmitToDataBase";
             this.btn_SubmitToDataBase.Size = new System.Drawing.Size(137, 41);
             this.btn_SubmitToDataBase.TabIndex = 7;
@@ -111,21 +111,9 @@
             this.lbl_WantedAmount.TabIndex = 11;
             this.lbl_WantedAmount.Text = "Wanted Amount";
             // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            ""});
-            this.checkedListBox1.Location = new System.Drawing.Point(47, 185);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(183, 212);
-            this.checkedListBox1.TabIndex = 12;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-            // 
             // btn_deleteCheckedItem
             // 
-            this.btn_deleteCheckedItem.Location = new System.Drawing.Point(280, 390);
+            this.btn_deleteCheckedItem.Location = new System.Drawing.Point(47, 421);
             this.btn_deleteCheckedItem.Name = "btn_deleteCheckedItem";
             this.btn_deleteCheckedItem.Size = new System.Drawing.Size(128, 41);
             this.btn_deleteCheckedItem.TabIndex = 13;
@@ -139,7 +127,7 @@
             this.dgv_OrderList.AllowUserToResizeColumns = false;
             this.dgv_OrderList.AllowUserToResizeRows = false;
             this.dgv_OrderList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_OrderList.Location = new System.Drawing.Point(280, 183);
+            this.dgv_OrderList.Location = new System.Drawing.Point(47, 199);
             this.dgv_OrderList.Name = "dgv_OrderList";
             this.dgv_OrderList.RowHeadersVisible = false;
             this.dgv_OrderList.Size = new System.Drawing.Size(150, 170);
@@ -152,7 +140,6 @@
             this.ClientSize = new System.Drawing.Size(610, 516);
             this.Controls.Add(this.dgv_OrderList);
             this.Controls.Add(this.btn_deleteCheckedItem);
-            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.lbl_WantedAmount);
             this.Controls.Add(this.txt_WantedAmount);
             this.Controls.Add(this.lbl_YourItem);
@@ -178,7 +165,6 @@
         private System.Windows.Forms.Label lbl_YourItem;
         private System.Windows.Forms.TextBox txt_WantedAmount;
         private System.Windows.Forms.Label lbl_WantedAmount;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button btn_deleteCheckedItem;
         private System.Windows.Forms.DataGridView dgv_OrderList;
     }

@@ -34,6 +34,8 @@
             this.btn_UpdateItemData = new System.Windows.Forms.Button();
             this.lbl_OrderIdhere = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgv_Orderlist = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Orderlist)).BeginInit();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -63,7 +65,7 @@
             // 
             // btn_UpdateItemData
             // 
-            this.btn_UpdateItemData.Location = new System.Drawing.Point(188, 232);
+            this.btn_UpdateItemData.Location = new System.Drawing.Point(45, 176);
             this.btn_UpdateItemData.Name = "btn_UpdateItemData";
             this.btn_UpdateItemData.Size = new System.Drawing.Size(101, 31);
             this.btn_UpdateItemData.TabIndex = 3;
@@ -89,11 +91,26 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Order List";
             // 
+            // dgv_Orderlist
+            // 
+            this.dgv_Orderlist.AllowUserToAddRows = false;
+            this.dgv_Orderlist.AllowUserToDeleteRows = false;
+            this.dgv_Orderlist.AllowUserToResizeColumns = false;
+            this.dgv_Orderlist.AllowUserToResizeRows = false;
+            this.dgv_Orderlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Orderlist.Location = new System.Drawing.Point(298, 57);
+            this.dgv_Orderlist.Name = "dgv_Orderlist";
+            this.dgv_Orderlist.ReadOnly = true;
+            this.dgv_Orderlist.RowHeadersVisible = false;
+            this.dgv_Orderlist.Size = new System.Drawing.Size(148, 150);
+            this.dgv_Orderlist.TabIndex = 6;
+            // 
             // ReceiveOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 285);
+            this.ClientSize = new System.Drawing.Size(550, 359);
+            this.Controls.Add(this.dgv_Orderlist);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_OrderIdhere);
             this.Controls.Add(this.btn_UpdateItemData);
@@ -102,6 +119,8 @@
             this.Controls.Add(this.richTextBox1);
             this.Name = "ReceiveOrder";
             this.Text = "ReceiveOrder";
+            this.Load += new System.EventHandler(this.ReceiveOrder_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Orderlist)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +134,6 @@
         private System.Windows.Forms.Button btn_UpdateItemData;
         private System.Windows.Forms.Label lbl_OrderIdhere;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgv_Orderlist;
     }
 }

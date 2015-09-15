@@ -24,7 +24,6 @@ Persist Security Info=False;";
         }
         private void DoOrder_Load(object sender, EventArgs e)
         {
-            checkedListBox1.Items.Remove("");
             //load data to datagridview
             try
             {                     
@@ -81,7 +80,7 @@ Persist Security Info=False;";
 
         private void btn_AddOrder_Click(object sender, EventArgs e)
         {
-           //add user order to checklistbox
+           //add user order to dgv
             if (txt_WantedAmount.Text == "")
             {
                 MessageBox.Show("Wanted amount cant be empty");
@@ -92,63 +91,60 @@ Persist Security Info=False;";
                      else
                 //add order to dgv
                 dgv_OrderList.Rows.Add(false, txt_YourItem.Text, txt_WantedAmount.Text);
-            //checkedListBox1.Items.Add(txt_YourItem.Text + " " + txt_WantedAmount.Text);    
-            txt_WantedAmount.Text = "";
+                txt_WantedAmount.Text = "";
         }
 
         private void btn_SubmitToDataBase_Click(object sender, EventArgs e)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            foreach (var item in checkedListBox1.Items)
-            {
-                sb.Append(item.ToString()).Append("\n");
-            }
+
             foreach (DataGridViewRow row in dgv_OrderList.Rows)
             {
                 sb.Append(row.Cells[1].Value.ToString()).Append(" ").Append(row.Cells[2].Value.ToString()).Append("\n");
             }
-            try
-            {       
-                //Add new ORder To database 
-                connection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "insert into OrderData(orderlist) values('" + sb + "')";
-                command.ExecuteNonQuery();
-                connection.Close();
-
-            }
-            catch (Exception ex)
+            if (sb.ToString() != "")
             {
-                MessageBox.Show(ex.Message);
-            }
+                try
+                {
+                    //Add new ORder To database 
+                    connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = "insert into OrderData(orderlist) values('" + sb + "')";
+                    command.ExecuteNonQuery();
+                    connection.Close();
 
-            try
-            {
-                //generate OrderID
-                connection.Open();
-                
-                OleDbDataAdapter da = new OleDbDataAdapter("select * from OrderData",connection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                DataRow lastRow = dt.Rows[dt.Rows.Count - 1];
-                MessageBox.Show("Your OrderID is " + lastRow["ID"]);
-                connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
+                try
+                {
+                    //generate OrderID
+                    connection.Open();
+
+                    OleDbDataAdapter da = new OleDbDataAdapter("select * from OrderData", connection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    DataRow lastRow = dt.Rows[dt.Rows.Count - 1];
+                    MessageBox.Show("Your OrderID is " + lastRow["ID"]);
+                    connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("no order");
             }
 
         }
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (var item in checkedListBox1.CheckedItems.OfType<string>().ToList())
-            {
-                checkedListBox1.Items.Remove(item);
-            }
-        }
+       
 
         //delete item from dgv_Orderlist
         private void btn_deleteCheckedItem_Click(object sender, EventArgs e)

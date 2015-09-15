@@ -15,18 +15,47 @@ namespace EuipmentRentApp
     public partial class ReceiveOrder : Form
     {
         private OleDbConnection connection = new OleDbConnection();
+        private object reader;
+
         public ReceiveOrder()
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\sr comtech\Documents\Visual Studio 2015\Projects\EuipmentRentApp\EuipmentRentApp\App_Data\Database\OfficeStoreSystem.accdb;
 Persist Security Info=False;";
-        }
 
+        }
+        //initial column to DGV here 
+        private void ReceiveOrder_Load(object sender, EventArgs e)
+        {
+            //generate new column and add to DGV
+            DataGridViewTextBoxColumn Itemcol = new DataGridViewTextBoxColumn();
+            Itemcol.Width = 80;
+            Itemcol.HeaderText = "Item";
+            Itemcol.Name = "Itemcol";
+            dgv_Orderlist.Columns.Add(Itemcol);
+
+            //generate new column and add to DGV
+            DataGridViewTextBoxColumn Amountcol = new DataGridViewTextBoxColumn();
+            Amountcol.Width = 80;
+            Amountcol.HeaderText = "Amount";
+            Amountcol.Name = "Amountcol";
+            dgv_Orderlist.Columns.Add(Amountcol);
+
+            //Set alignment to column's header
+            foreach (DataGridViewColumn col in dgv_Orderlist.Columns)
+            {
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.HeaderCell.Style.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
+                col.Width = 50;
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+            //clear DGV every time 
+            dgv_Orderlist.Rows.Clear();
             try
             {
-                //combine data from databse to combobox or dropdownlist
+                //show order from to DGV
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
@@ -36,9 +65,15 @@ Persist Security Info=False;";
                 da.Fill(dt);
                 foreach (DataRow row in dt.Rows)
                 {
-                    richTextBox1.Text = row["orderlist"].ToString();
-                    
-
+                    using (StringReader reader = new StringReader(row["orderlist"].ToString()))
+                    {
+                        string line;                        
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            string[] subline = line.Split();
+                            dgv_Orderlist.Rows.Add(subline[0],subline[1]);
+                        }
+                    } 
                 }
                 connection.Close();
             }
@@ -98,5 +133,7 @@ Persist Security Info=False;";
             }
 
         }
+
+       
     }
 }
